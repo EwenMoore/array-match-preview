@@ -1,0 +1,341 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=45441766-e58b-42d4-a96b-366c99fc48e7
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. --><meta name="viewport" content="width=device-width,initial-scale=1"><title>Array Match</title><style>*{box-sizing:border-box}html{font-family:system-ui,sans-serif;color:#172441;background:#eff3fc}body{margin:0}button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid #e8a51c;outline-offset:3px}main{max-width:1080px;margin:auto;padding:28px 36px}header{display:flex;align-items:center;justify-content:space-between;position:relative;background:#eff3fc;padding:8px 0 16px}.eyebrow{font-size:11px;letter-spacing:1.7px;font-weight:800;color:#536686}h1{font-size:36px;letter-spacing:-1.5px;margin:2px 0}h1 span{color:#2958da}.timer{display:flex;flex-direction:column;align-items:center;justify-content:center;width:78px;height:78px;border:4px solid #c9d5ff;border-top-color:#2958da;border-radius:50%;background:white}.timer strong{font-size:30px;line-height:1.1;font-variant-numeric:tabular-nums}.timer span{font-size:11px;color:#60708f}.timer.urgent{border-color:#ffb393;color:#ae3a16}.intro{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:8px 0 20px}.intro p{font-size:18px;font-weight:600;margin:0}.intro>span{font-size:13px;color:#60708f}.play{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(260px,1fr);gap:32px;align-items:start}.grid-panel{min-width:0}.grid-caption{display:flex;justify-content:space-between;font-size:11px;letter-spacing:1px;font-weight:700;color:#60708f;margin-bottom:10px}.board{position:relative;width:100%;aspect-ratio:1;background-color:white;background-image:linear-gradient(to right,#a7b8d4 1px,transparent 1px),linear-gradient(to bottom,#a7b8d4 1px,transparent 1px);background-size:calc(100% / var(--grid,12)) calc(100% / var(--grid,12));border-right:1px solid #a7b8d4;border-bottom:1px solid #a7b8d4;outline:1px solid #a7b8d4;box-shadow:0 14px 40px #28497c12}.shape{position:absolute;background:#101114;border:0;color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:3px;touch-action:none}.shape.target{outline:3px solid #e4a830;outline-offset:-3px}.shape.correct{box-shadow:inset 0 0 0 3px #30b59d}.shape.incorrect{box-shadow:inset 0 0 0 3px #f18570}.shape .placed{font-size:clamp(12px,1.5vw,17px);font-weight:700;line-height:1.25;color:#fff;white-space:nowrap}.shape .placed.area{color:white}.hint{font-size:12px;color:#64748f;text-align:center;margin:12px 0}.cards-panel{background:white;padding:24px;border-radius:18px}.card-group+ .card-group{margin-top:26px}h2{font-size:19px;margin:0 0 5px;letter-spacing:-.4px}h2 span{font-size:12px;color:#8693ad;margin-right:8px}.card-group p,.tap-hint{font-size:13px;line-height:1.5;color:#6a7891;margin:0 0 14px}.bank{display:flex;flex-wrap:wrap;gap:8px}.card{min-width:70px;flex:1;padding:14px 8px;border:1px solid #bacbed;border-radius:10px;background:#eef3ff;color:#244da6;font-size:20px;font-weight:650;touch-action:none;user-select:none}.card.area{background:#fff7e5;border-color:#ebd5a7;color:#866013}.card.selected{outline:3px solid #2958da;outline-offset:1px}.card:disabled{opacity:.3;cursor:default}.tap-hint{margin-top:22px;font-size:12px}.actions{display:flex;gap:10px}.actions button{flex:1;min-height:44px;padding:12px;border-radius:10px;font-size:14px;font-weight:650}.primary{background:#2958da;border:0;color:white;padding:14px 24px;border-radius:10px;font-weight:700}.primary:disabled,.secondary:disabled{opacity:.4;cursor:default}.secondary{border:1px solid #d6dfef;background:white;color:#64728d}#feedback{font-size:12px;line-height:1.5;color:#62718e;min-height:36px;margin-bottom:0}.modal{position:fixed;inset:0;z-index:10;display:grid;place-items:center;padding:22px;background:#17244155;backdrop-filter:blur(5px)}.modal[hidden]{display:none}.modal-card{background:white;padding:36px;border-radius:24px;text-align:center;max-width:410px;box-shadow:0 20px 100px #17244140}.modal-card h2{font-size:34px;line-height:1.1;margin:16px 0}.modal-card p{font-size:15px;line-height:1.65;color:#65748b}.ghost{position:fixed;z-index:20;pointer-events:none;transform:translate(-50%,-50%);padding:9px 14px;border-radius:9px;background:#2958da;color:white;font-weight:700;box-shadow:0 4px 15px #0003}.ghost[hidden]{display:none}@media(max-width:700px){main{padding:8px 16px}header{padding-bottom:8px}.eyebrow{font-size:9px}h1{font-size:27px}.timer{width:58px;height:58px;border-width:3px}.timer strong{font-size:25px}.timer span{font-size:10px}.intro{margin:2px 0 12px}.intro p{font-size:14px}.intro>span{font-size:11px}.play{display:flex;flex-direction:column;gap:8px}.grid-panel{width:min(100%,46svh);align-self:center}.grid-caption{font-size:9px;margin-bottom:6px}.hint{font-size:10px;margin:6px 0}.cards-panel{width:100%;padding:12px;border-radius:12px}.card-group+ .card-group{margin-top:10px}.card-group h2{font-size:14px}.card-group p{display:none}.bank{gap:6px}.card{min-width:0;padding:8px 2px;font-size:16px;min-height:40px}.tap-hint{font-size:10px;margin:9px 0}.actions button{min-height:42px;padding:8px}#feedback{font-size:11px;min-height:0;margin-top:8px}.shape{gap:1px;padding:1px}.shape .placed{font-size:12px}.modal-card{padding:25px}.modal-card h2{font-size:30px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+@media(max-width:700px){.grid-panel{width:min(100%,43svh)}.shape .placed{font-size:clamp(9px,2.8vw,12px)}.shape .placed.area{font-size:11px}.card{min-height:44px}.tap-hint{line-height:1.3}}
+.board.border-only::before{content:'';position:absolute;inset:calc(100% / var(--grid,12));background:white;pointer-events:none}.board #shapes{position:absolute;inset:0}.intro #level{color:#244da6}
+.shape .placed{border:0;background:transparent;padding:2px 4px;border-radius:4px;cursor:pointer}.shape .placed:hover{background:#ffffff30}.shape .placed:focus-visible{outline:2px solid white;outline-offset:0}.shape .placed:disabled{cursor:default}
+.board.full-grid .shape{background-image:linear-gradient(to right,#ffffff88 1px,transparent 1px),linear-gradient(to bottom,#ffffff88 1px,transparent 1px);background-size:calc(100% / var(--w)) calc(100% / var(--h))}.board.full-grid .placed{background:#172441bb}
+.timer{position:relative}.timer .bomb-icon{display:none;position:absolute;left:-22px;top:0;font-size:27px}.timer.urgent .bomb-icon{display:block;animation:tick .5s ease-in-out infinite alternate}.sound-toggle{background:transparent;border:0;color:#536686;font-size:12px;min-height:32px;padding:4px 0;margin-bottom:4px}.boom .modal-card{animation:burst .6s ease-out}.boom .modal-card::before{content:'💥';display:block;font-size:44px}@keyframes tick{to{transform:rotate(16deg) scale(1.12)}}@keyframes burst{0%{transform:scale(.9)}40%{transform:scale(1.04)}100%{transform:scale(1)}}
+@media(max-width:700px){main{padding-left:max(10px,env(safe-area-inset-left));padding-right:max(10px,env(safe-area-inset-right))}.bank{display:grid;grid-template-columns:repeat(auto-fit,minmax(54px,1fr));gap:5px}.card{font-size:14px;min-height:44px}.grid-panel{width:min(100%,max(280px,40svh))}.shape .placed{padding:2px 1px;font-size:clamp(9px,2.6vw,12px)}.shape .placed.area{font-size:11px}.timer{margin-left:22px}.intro{flex-wrap:wrap}.modal-card{max-height:90svh;overflow:auto}}
+@media(min-width:701px) and (max-height:550px){main{padding:8px 20px}.play{grid-template-columns:minmax(280px,1fr) minmax(260px,1fr);gap:16px}.grid-panel{max-width:400px}header{padding-bottom:4px}.cards-panel{padding:12px}.card-group+ .card-group{margin-top:12px}}
+@media(prefers-reduced-motion:reduce){.timer.urgent .bomb-icon,.boom .modal-card{animation:none}}
+.practice-menu{border:1px solid #bacbed;background:white;color:#244da6;border-radius:8px;padding:8px 12px;min-height:40px}.practice-controls{display:grid;gap:10px;text-align:left;border-top:1px solid #d6dfef;margin-top:20px;padding-top:16px}.practice-controls label{font-size:13px;font-weight:700}.practice-controls select{font:inherit;font-size:14px;width:100%;min-width:0;padding:10px 6px;border:1px solid #bacbed;border-radius:8px;background:white;color:#172441}.practice-controls button{min-height:42px;border-radius:8px}.modal-card{max-height:90svh;overflow:auto}
+.board.no-grid{background-image:none;border:0;outline:0}.board.no-grid::before{display:none}
+.shape.tiny{flex-direction:row;gap:0;overflow:visible}.shape.tiny .placed{font-size:0;padding:0;min-width:9px;line-height:1.1}.shape.tiny .placed::after{content:attr(data-symbol);font-size:11px;font-weight:800}.time-up .modal-card{border:1px solid #ffca8a;background:linear-gradient(160deg,#fff4de,white 58%);box-shadow:0 24px 100px #17244166}.time-up .modal-card::before{content:'💣';display:grid;place-items:center;width:86px;height:86px;margin:0 auto 16px;border-radius:50%;background:#ffe3b6;font-size:46px;box-shadow:0 0 0 9px #fff4df}.time-up.boom .modal-card::before{content:'💥';animation:burst .6s ease-out}.time-up #modalLabel{color:#a84913}.time-up #modalTitle{font-size:clamp(26px,5vw,36px)}.time-up #start{width:100%;background:#bd4b18;box-shadow:0 5px 0 #873312}.time-up .practice-controls{margin-top:24px}.timer.urgent{background:#fff0d6;box-shadow:0 0 0 5px #ffe4b080}.timer.urgent .bomb-icon{font-size:34px;left:-30px}
+.answer-slot{display:flex;flex-direction:column;align-items:center;gap:2px}.shape.tiny{flex-direction:column}.shape.tiny .answer-slot{gap:0}.shape.tiny .placed{font-size:clamp(5px,.95vw,9px);padding:0;line-height:1.1;letter-spacing:-.35px}.shape.tiny .placed::after{content:none}.overlap-board .shape{box-shadow:inset 0 0 0 2px #ffffff99}.overlap-board .answer-slot{position:absolute;top:var(--label-y);left:50%;transform:translate(-50%,-50%);min-width:65%;min-height:26px;background:#0002;border-radius:4px}.overlap-board .answer-slot:empty::after{content:'+';color:#fff9;font-size:19px}.test-picker{display:inline-flex;align-items:center;gap:8px;font-size:12px;margin:8px}.test-picker select{font:inherit;min-height:40px;border:1px solid #bacbed;border-radius:8px;padding:6px;max-width:190px}.overlap-board .placed{font-size:clamp(9px,1.5vw,15px)}
+.overlap-board .answer-slot{left:var(--label-x);width:var(--label-width);min-width:0;min-height:24px;gap:0}.overlap-board .answer-slot:empty::after{content:none}.overlap-board .placed{font-size:clamp(8px,1.15vw,12px);padding:1px;line-height:1.1}
+.overlap-board .answer-slot{background:transparent;border:0;box-shadow:none;border-radius:0}.overlap-board .answer-slot:empty{visibility:hidden}.overlap-board .placed{background:transparent;text-shadow:0 1px 2px #0005}
+.test-picker{display:none}body.testing .test-picker{display:inline-flex}
+body.bomb-shake main{animation:screen-rumble .6s ease-out}body.bomb-shake .modal-card{animation:screen-rumble .6s ease-out}@keyframes screen-rumble{0%,100%{transform:translate(0,0)}12%{transform:translate(-5px,2px)}25%{transform:translate(5px,-3px)}38%{transform:translate(-4px,-1px)}52%{transform:translate(3px,2px)}68%{transform:translate(-2px,1px)}84%{transform:translate(1px,-1px)}}@media(prefers-reduced-motion:reduce){body.bomb-shake main,body.bomb-shake .modal-card{animation:none}}
+[hidden]{display:none!important}.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px}.toolbar button{min-height:42px;padding:8px 12px;border:1px solid #bacbed;border-radius:9px;background:white;color:#244da6}.stats{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.stat{background:white;border:1px solid #d6dfef;border-radius:12px;padding:10px 14px;font-size:13px}.stat strong{display:block;font-size:19px;margin-top:3px}.gold{color:#93620b}.silver{color:#596980}.modal-card{position:relative;width:100%;max-width:490px}.modal-close{position:absolute;right:12px;top:10px;border:0;background:#eef3ff;color:#244da6;border-radius:50%;width:36px;height:36px;font-size:26px}.reward{padding:12px;background:#fff5d9;border:1px solid #ead392;border-radius:12px;font-weight:700;color:#805609}.rules{font-size:12px!important}.best-list{max-height:240px;overflow:auto;text-align:left}.best-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #edf0f6;font-size:13px}.board{border:0;outline:0;background-image:none!important}.board::before{display:none!important}.grid-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}.board #shapes{z-index:1}.border-grid{z-index:2}.intro p{font-size:16px}@media(max-width:700px){.stats{gap:5px;margin:9px 0}.stat{flex:1;padding:7px;font-size:10px}.stat strong{font-size:15px}.toolbar{gap:5px}.toolbar button{font-size:12px;padding:6px 9px}.modal-card{padding:32px 20px 22px}.intro p{font-size:13px}}
+
+.streak-meter{display:flex;gap:5px;font-size:21px;color:#c9d1df;margin-top:5px}.streak-meter .lit{color:#b77a08;text-shadow:0 1px 3px #ffd876}.extras-card{max-width:550px}.shop-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;text-align:left}.shop-item{border:1px solid #d6dfef;border-radius:12px;padding:12px;background:#f8faff}.shop-item button{width:100%;padding:9px;border:0;border-radius:8px;background:#2958da;color:white;margin-top:8px}.shop-item button:disabled{background:#e0e6ef;color:#69778e;cursor:default}.swatch{height:24px;border-radius:5px;margin:8px 0}.best-celebration{padding:14px;border-radius:12px;background:#e4f5ee;color:#196a50;font-weight:750}.bonus-button{display:block;margin:12px auto 0;padding:12px;border:1px solid #d5a63f;border-radius:10px;background:#fff2cc;color:#805609;font-weight:700}.flying-star{position:fixed;left:0;top:0;z-index:100;pointer-events:none;color:#9aa7ba;font-size:30px;text-shadow:0 2px 5px #fff;animation:star-flight 950ms ease-in forwards}.flying-star.gold-star{color:#e6ae22;font-size:38px}.confetti{position:fixed;z-index:99;pointer-events:none;width:9px;height:14px;animation:confetti-fall 1200ms ease-out forwards}.shape::before{content:'';position:absolute;inset:0;pointer-events:none}.shape .answer-slot{z-index:1}body[data-pattern=dots] .shape::before{background-image:radial-gradient(#ffffff44 1.5px,transparent 2px);background-size:10px 10px}body[data-pattern=stripes] .shape::before{background:repeating-linear-gradient(45deg,transparent 0 8px,#ffffff22 8px 11px)}body[data-theme=forest]{background:#edf5ef}body[data-theme=sunset]{background:#fff1e9}body[data-theme=cosmos]{background:#efebfa}body[data-theme] header{background:inherit}body[data-theme] main{background:inherit}#extras{z-index:30}#shopBalance{font-weight:700;color:#93620b}#extraMessage{min-height:22px;font-size:13px}#normalGame{margin-top:10px}.modal-card .rules{font-size:11px!important;line-height:1.5}.modal-card h2{font-size:29px}
+@keyframes star-flight{0%{transform:translate(var(--sx),var(--sy)) scale(.6);opacity:0}20%{opacity:1}100%{transform:translate(var(--tx),var(--ty)) scale(.5);opacity:0}}@keyframes confetti-fall{from{transform:translateY(-20px) rotate(0);opacity:1}to{transform:translateY(240px) rotate(280deg);opacity:0}}@media(prefers-reduced-motion:reduce){.flying-star,.confetti{display:none}}@media(max-width:450px){.shop-list{grid-template-columns:1fr}.streak-meter{font-size:17px;gap:2px}}
+.difficulty-advice{padding:12px;border:1px solid #b8cde8;background:#edf4ff;border-radius:12px;margin:12px 0}.difficulty-advice p{font-size:14px;margin:0 0 10px;color:#24446e}.difficulty-advice button{background:white}
+
+/* Clear, readable results and difficulty guidance. */
+#modal .modal-card{max-width:580px;padding:36px}
+#modal .eyebrow{font-size:14px;line-height:1.5;letter-spacing:1px}
+#modal .modal-card h2{font-size:34px;line-height:1.2}
+#modal .modal-card p{font-size:18px;line-height:1.6}
+#modal .modal-card .rules{font-size:16px!important;line-height:1.6}
+#modal .difficulty-advice p{font-size:19px;line-height:1.6}
+#modal .reward,#modal .best-celebration{font-size:19px;line-height:1.5}
+#modal button:not(.modal-close),#modal .practice-controls label,#modal .practice-controls select{font-size:17px;line-height:1.45}
+#modal .practice-controls button{min-height:48px}
+#modal .best-row{font-size:16px;line-height:1.5;gap:12px}
+@media(max-width:700px){#modal{padding:14px}#modal .modal-card{padding:30px 20px 24px}#modal .modal-card h2{font-size:30px}#modal .modal-card p{font-size:18px}#modal .practice-controls select{font-size:16px}}
+.timer-stat{min-width:170px;text-align:center;border-color:#c9d5ff;background:#f8faff}.timer-stat .timer{position:relative;width:auto;height:auto;border:0;border-radius:0;background:transparent;padding:0;box-shadow:none}.timer-stat .timer strong{font-size:36px}.timer-stat .timer span{font-size:13px}.timer-stat .timer .bomb-icon{display:none}.timer-stat .timer.urgent .bomb-icon{display:block;left:0;top:0;font-size:28px}@media(max-width:700px){.timer-stat{min-width:145px}.timer-stat .timer strong{font-size:32px}}</style><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232958da'/%3E%3Cpath d='M14 14h36v36H14zM14 26h36M14 38h36M26 14v36M38 14v36' fill='none' stroke='white' stroke-width='3'/%3E%3C/svg%3E"></head><body><main>
+<header><div><span class="eyebrow">COUNT • MULTIPLY • MATCH</span><h1>Array Match<span>.</span></h1></div></header>
+<div class="toolbar"><button id="practiceMenu">Choose level</button><button id="restart" title="Start a fresh round. Keeps tokens and records; resets the winning streak.">Restart round</button><button id="sound" aria-pressed="true">Sound on</button><button id="records">Fastest times</button><button id="daily">Daily challenge</button><button id="shop">Star shop</button></div><div class="stats" aria-label="Your saved rewards"><div class="stat">Star tokens<strong id="tokens"></strong></div><div class="stat">Winning streak<strong id="streak"></strong><div id="streakMeter" class="streak-meter" role="img"></div></div><div class="stat">Fastest round · this level<strong id="best"></strong></div><div class="stat timer-stat">Time remaining<div class="timer" aria-label="Seconds remaining"><span class="bomb-icon" aria-hidden="true">💣</span><strong id="time">60</strong><span>seconds</span></div></div></div><div class="intro"><p id="level">Level 1 · round 1 of 10 · 2 rectangles</p><span id="progress">0 / 4 cards placed</span></div>
+<div class="play"><section class="grid-panel"><div class="grid-caption"><span id="gridMode">COUNT THE SQUARES</span><span id="gridSize">12 × 12</span></div><div class="board" id="board" aria-label="Twelve by twelve grid"><div id="shapes"></div></div><p class="hint" id="gridHint">Count the grid squares along each side.</p></section>
+<section class="cards-panel"><div class="card-group"><h2><span>01</span> Calculations</h2><p>Drag a calculation into each rectangle.</p><div id="calculations" class="bank"></div></div><div class="card-group"><h2><span>02</span> Areas</h2><p>Then add its answer in square units.</p><div id="areas" class="bank"></div></div><p class="tap-hint">Tap or drag a card into a rectangle. Tap a placed card to send it home.</p><div class="actions"><button id="clear" class="secondary" disabled>Clear all</button><button id="submit" class="primary" disabled>Submit</button></div><p id="feedback" role="status" aria-live="polite">Two cards belong in every rectangle.</p></section></div>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><section class="modal-card"><button id="closeModal" class="modal-close" aria-label="Close window and resume round" hidden>×</button><span class="eyebrow" id="modalLabel">CHOOSE YOUR CHALLENGE</span><h2 id="modalTitle">See the shape.<br>Find the area.</h2><p id="modalText">All 18 levels are open, with ten shuffled rounds per level and 60 seconds per round.</p><p id="reward" class="reward" hidden></p><div id="difficultyAdvice" class="difficulty-advice" hidden><p id="adviceText"></p><button id="trySuggested" class="secondary practice-menu"></button></div><p id="bestCelebration" class="best-celebration" hidden></p><p class="rules">Win a round: 1 silver star. Under 30 seconds: 2 silver stars. Every 2 silver become 1 gold. Every 5 consecutive wins: +5 gold! Tokens and fastest times are saved in this browser.</p><button class="primary" id="start">Let’s play ↗</button><button id="bonusRound" class="bonus-button" hidden>Optional bonus challenge · win 3 gold ★</button><button id="normalGame" class="secondary practice-menu" hidden>Continue normal game</button><div id="recordsList" class="best-list" hidden></div><div class="practice-controls"><label for="practiceStage">Choose your starting level</label><select id="practiceStage"></select><button id="tryStage" class="primary">Play selected level</button><button id="resumeProgress" class="secondary">Continue saved game</button></div></section></div><div class="modal" id="extras" role="dialog" aria-modal="true" aria-labelledby="extraTitle" hidden><section class="modal-card extras-card"><button id="closeExtras" class="modal-close" aria-label="Close window">×</button><span class="eyebrow">A LITTLE EXTRA FUN</span><h2 id="extraTitle"></h2><p id="extraText"></p><div id="extraContent"></div><p id="extraMessage" role="status"></p></section></div></main><script>const $=id=>document.getElementById(id);
+const LEVELS=[
+ ['Two rectangles · full grid',2,'full',1],['Two rectangles · hidden inside lines',2,'grid',6],
+ ['Three rectangles · no grid',3,'none',11],['Four rectangles',4,'grid',16],['Five rectangles',5,'grid',21],
+ ['Outside grid only · 4 rectangles',4,'border',26],['Outside grid only · 5 rectangles',5,'border',31],
+ ['Six rectangles · outside clues',6,'border',41],
+ ['Four rectangles · no grid',4,'none',46],['Five rectangles · no grid',5,'none',46],
+ ['Six rectangles · no grid',6,'none',51],['Seven rectangles · no grid',7,'none',56],
+ ['Three overlapping rectangles',3,'overlap',61],['Four overlapping rectangles',4,'overlap',61],
+ ['Five overlapping rectangles',5,'overlap',61],['Six overlapping rectangles',6,'overlap',61],
+ ['Seven overlapping rectangles',7,'overlap',61],['Eight overlapping rectangles',8,'overlap',66]
+].map(([label,count,mode,legacy])=>({label,count,mode,legacy}));
+const ROUNDS=10,MAX_ROUND=LEVELS.length*ROUNDS,STATS_KEY='array-match-rewards-v2';
+function loadStats(){let s={};try{s=JSON.parse(localStorage.getItem(STATS_KEY)||'{}')||{}}catch{}
+ return {tokens:Number.isSafeInteger(s.tokens)&&s.tokens>=0?s.tokens:0,streak:Number.isSafeInteger(s.streak)&&s.streak>=0?s.streak:0,best:s.best&&typeof s.best==='object'?s.best:{},progress:Number.isInteger(s.progress)&&s.progress>=1&&s.progress<=MAX_ROUND?s.progress:1,sound:s.sound!==false,owned:Array.isArray(s.owned)?s.owned:[],theme:s.theme||"classic",pattern:s.pattern||"plain",dailyBest:s.dailyBest||{},dailyPaid:s.dailyPaid||{},bonusBest:s.bonusBest||{},bonusPaid:s.bonusPaid||{},unlockedBonus:s.unlockedBonus||{}};}
+let stats=loadStats(),level=stats.progress,advance=false,practice=false,GRID=12;
+function saveStats(){try{localStorage.setItem(STATS_KEY,JSON.stringify(stats))}catch{}}
+function levelIndex(n=level){return Math.floor((n-1)/ROUNDS)}
+let gameMode='normal',dailyDate='',randomSource=null;
+function random(){return randomSource?randomSource():Math.random()}
+function config(){return LEVELS[Math.min(levelIndex()+(gameMode==='bonus'?1:0),LEVELS.length-1)]}
+function legacyLevel(){return config().legacy+Math.floor(((level-1)%ROUNDS)/2)}
+function rectangleCount(){return config().count}
+function roundSeconds(){return gameMode==='bonus'?45:60}
+function levelName(n=level){return 'Level '+(levelIndex(n)+1)}
+function roundName(n=level){return levelName(n)+' · round '+((n-1)%ROUNDS+1)+' of '+ROUNDS}
+function formatTime(ms){return (ms/1000).toFixed(2)+'s'}
+const colours=['#2359b5','#aa3275','#167864','#b54c1b','#7047ad','#087c92','#8a591b','#ba3550'];
+function updateStats(){
+ $('tokens').innerHTML='<span class="gold">★ '+Math.floor(stats.tokens/2)+' gold</span> · <span class="silver">★ '+stats.tokens%2+' silver</span>';
+ $('streak').textContent=stats.streak+(stats.streak===1?' win':' wins')+' · '+(5-stats.streak%5)+' to bonus';
+ const best=gameMode==='daily'?stats.dailyBest[dailyDate]:gameMode==='bonus'?stats.bonusBest[levelIndex()+1]:stats.best[levelIndex()+1];$('best').textContent=Number.isFinite(best)?formatTime(best):'Not set yet';
+ const filled=stats.streak>0&&stats.streak%5===0?5:stats.streak%5;$('streakMeter').innerHTML=Array.from({length:5},(_,i)=>'<span class="'+(i<filled?'lit':'')+'">★</span>').join('');$('streakMeter').setAttribute('aria-label',filled+' of 5 streak stars filled');
+ $('sound').textContent=stats.sound?'Sound on':'Sound off';$('sound').setAttribute('aria-pressed',String(stats.sound));
+}
+function updateSelector(){const selected=$('practiceStage').value;
+ $('practiceStage').innerHTML=LEVELS.map((c,i)=>'<option value="'+(i*ROUNDS+1)+'">Level '+(i+1)+' · '+c.label+'</option>').join('');
+ $('practiceStage').value=selected||String(levelIndex()*ROUNDS+1);
+}
+let lastAward={};
+function awardWin(elapsed){
+ const key=gameMode==='daily'?dailyDate:levelIndex()+1;
+ const records=gameMode==='daily'?stats.dailyBest:gameMode==='bonus'?stats.bonusBest:stats.best;
+ const previous=records[key],newBest=!Number.isFinite(previous)||elapsed<previous;
+ if(newBest)records[key]=elapsed;
+ const alreadyPaid=gameMode==='daily'?stats.dailyPaid[key]:gameMode==='bonus'?stats.bonusPaid[key]:false;
+ const silver=alreadyPaid?0:gameMode==='normal'?(elapsed<30000?2:1):6;
+ let streakBonus=false;
+ if(!alreadyPaid){stats.tokens+=silver;stats.streak++;streakBonus=stats.streak%5===0;if(streakBonus)stats.tokens+=10;}
+ if(gameMode==='daily')stats.dailyPaid[key]=true;
+ if(gameMode==='bonus')stats.bonusPaid[key]=true;
+ if(gameMode==='normal'){stats.progress=Math.min(level+1,MAX_ROUND);if(level%ROUNDS===0)stats.unlockedBonus[levelIndex()+1]=true;}
+ lastAward={silver,streakBonus,newBest,improvement:Number.isFinite(previous)?previous-elapsed:null};saveStats();updateStats();
+ return (alreadyPaid?'Reward already collected':gameMode==='normal'?'+'+silver+' silver star'+(silver===1?'':'s'):'+3 gold stars')+(streakBonus?' + 5 gold stars for five wins in a row!':'')+' · '+formatTime(elapsed);
+}
+function resetStreak(){stats.streak=0;saveStats();updateStats()}
+const shuffle=arr=>{arr=[...arr];for(let i=arr.length-1;i>0;i--){let j=Math.floor(random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]}return arr};
+function makeCandidate(){
+ const legacy=legacyLevel();
+ const stage=Math.max(1,legacy-(legacy>=21?6:5));
+ GRID=stage>=25?15:12;
+ const count=rectangleCount();
+ if(levelIndex()===4)return [[1,1,3,3],[5,1,3,3],[9,1,2,3],[1,7,3,3],[6,7,3,3]].map(([x,y,w,h],id)=>({id,x,y,w,h,area:w*h}));const repeated=stage>=8&&stage%3===2;
+ const sets=stage<=5?[[2,3],[3,3],[3,4],[4,4]]:stage<=10?[[3,3],[2,5],[3,4],[3,5]]:stage<15?[[3,3],[2,5],[3,4],[3,5]]:[[3,4],[3,5],[4,4],[2,5]];
+ let dims=shuffle(sets).slice(0,count);
+ if(stage>=15)dims=shuffle([[3,4],[3,5],[4,4],[3,5]]).slice(0,count);
+ if(stage>=15&&!repeated)dims=[[3,4],[3,5],[4,4],[2,5]];
+ if(repeated&&stage<25){
+  let layout=[[1,1,2,6],[4,1,4,3],[4,5,2,5],[7,6,4,4]].slice(0,count);
+  const turns=Math.floor(random()*4);
+  for(let i=0;i<turns;i++)layout=layout.map(([x,y,w,h])=>[GRID-y-h,x,h,w]);
+  if(random()<.5)layout=layout.map(([x,y,w,h])=>[GRID-x-w,y,w,h]);
+  return layout.map(([x,y,w,h],id)=>({id,x,y,w,h,area:w*h}));
+ }
+ const seen=new Set();
+ const orient=(w,h,maxWidth)=>{if(h<=maxWidth&&random()<.5)[w,h]=[h,w];if(seen.has(w+'x'+h))[w,h]=[h,w];if(w>maxWidth||seen.has(w+'x'+h))throw Error('Duplicate rectangle orientation');seen.add(w+'x'+h);return [w,h]};
+ if(stage>=25){
+  const tiny=legacy%4===0?[1,1]:[2,2];
+  const layouts=[
+   [[1,1,9,9],[11,1,3,3],[11,5,2,4],[1,11,4,3],[6,11,4,2],[12,11,...tiny]],
+   [[1,1,7,6],[9,1,5,4],[9,6,4,3],[1,8,3,6],[5,10,4,4],[12,11,...tiny]],
+   [[1,1,8,7],[10,1,4,4],[10,6,3,3],[1,9,4,5],[6,10,4,3],[12,11,...tiny]]
+  ];
+  layouts.push([[1,1,8,8],[10,1,4,4],[10,6,3,2],[10,9,1,1],[1,10,3,4],[5,10,4,3],[10,11,2,3]]);
+  let chosen=count===7?layouts[3]:layouts[Math.floor(random()*layouts.length)];
+  // Keep one large shape, with a varying selection of smaller shapes around it.
+  chosen=[chosen[0],...shuffle(chosen.slice(1)).slice(0,count-1)];
+  const turns=Math.floor(random()*4);
+  for(let i=0;i<turns;i++)chosen=chosen.map(([x,y,w,h])=>[GRID-y-h,x,h,w]);
+  if(random()<.5)chosen=chosen.map(([x,y,w,h])=>[GRID-x-w,y,w,h]);
+  return shuffle(chosen).map(([x,y,w,h],id)=>({id,x,y,w,h,area:w*h}));
+ }
+
+ // Each shape fits in a five-square quadrant, keeping the outer counting border clear.
+ const slots=shuffle([[1,1],[6,1],[1,6],[6,6]]);
+ return dims.map(([w,h],id)=>{[w,h]=orient(w,h,5);const [sx,sy]=slots[id];return {id,x:sx+Math.floor(random()*(6-w)),y:sy+Math.floor(random()*(6-h)),w,h,area:w*h}});
+}
+function overlapLayout(){
+ GRID=15;
+ const count=rectangleCount();
+ const pool=rectangleCount()<=7?[[9,9],[7,7],[7,5],[5,7],[6,4],[4,6],[3,5],[5,3],[2,4],[1,1]]:rectangleCount()===8?[[8,8],[7,6],[6,7],[6,6],[7,5],[5,7],[5,5],[4,6],[6,4],[3,4]]:[[6,6],[6,5],[5,6],[5,5],[7,4],[4,7],[6,4],[4,6],[5,4],[4,5]];
+ const hits=(a,b)=>a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y;
+ for(let trial=0;trial<120;trial++){
+  const dims=[...pool.slice(0,3),...shuffle(pool.slice(3)).slice(0,count-3)].sort((a,b)=>b[0]*b[1]-a[0]*a[1]);
+  const rs=[];let failed=false;
+  for(const [w,h] of dims){
+   const positions=[];for(let y=0;y<=GRID-h;y++)for(let x=0;x<=GRID-w;x++)positions.push({x,y,w,h});
+   const candidates=shuffle(positions).filter(p=>rs.every(r=>!hits(p,r.safe)&&r.cornerZones.every(c=>!hits(p,c))));
+   if(!candidates.length){failed=true;break}
+   const p=candidates[0],sw=Math.min(2,w),sh=Math.min(2,h);
+   const corners=shuffle([[0,0],[w-sw,0],[0,h-sh],[w-sw,h-sh]]);
+   const [lx,ly]=corners[0];
+   const d=.6, diagonal=random()<.5;
+   const cornerZones=diagonal?[{x:p.x,y:p.y,w:d,h:d},{x:p.x+w-d,y:p.y+h-d,w:d,h:d}]:[{x:p.x+w-d,y:p.y,w:d,h:d},{x:p.x,y:p.y+h-d,w:d,h:d}];
+   rs.push({...p,id:rs.length,area:w*h,labelX:lx+sw/2,labelY:ly+sh/2,safe:{x:p.x+lx,y:p.y+ly,w:sw,h:sh},cornerZones,overlap:true});
+  }
+  if(!failed&&rs.some((a,i)=>rs.some((b,j)=>i!==j&&hits(a,b))))return rs;
+ }
+ throw Error('Unable to reserve clear answer spaces');
+}
+function makeLayout(){if(config().mode==='overlap')return overlapLayout();for(let attempt=0;attempt<200;attempt++){const rs=makeCandidate();if(rs.every((a,i)=>rs.every((b,j)=>i===j||a.x+a.w<b.x||b.x+b.w<a.x||a.y+a.h<b.y||b.y+b.h<a.y)))return rs}throw Error('Unable to space rectangles')}
+// Keep the last ten layouts per difficulty so replays do not reuse a recent board.
+const recentLayouts=new Map();
+function makeFreshLayout(){
+ const group=levelIndex(), recent=gameMode==='daily'?[]:recentLayouts.get(group)||[];
+ let result,signature;
+ for(let attempt=0;attempt<100;attempt++){
+  result=makeLayout();
+  // Vary positions as well as card order, retaining a clear counting border and gaps.
+  if(config().mode!=='overlap')for(const r of shuffle(result)){
+   const positions=[];
+   for(let y=1;y<=GRID-r.h-1;y++)for(let x=1;x<=GRID-r.w-1;x++){
+    if(result.every(other=>other===r||x+r.w<other.x||other.x+other.w<x||y+r.h<other.y||other.y+other.h<y))positions.push({x,y});
+   }
+   if(positions.length)Object.assign(r,positions[Math.floor(random()*positions.length)]);
+  }
+  signature=result.map(r=>[r.x,r.y,r.w,r.h].join(',')).sort().join(';');
+  if(!recent.includes(signature))break;
+ }
+ if(gameMode!=='daily')recentLayouts.set(group,[...recent,signature].slice(-10));
+ return result;
+}
+let rectangles=[],cards=[],placements={},selected=null,active=false,paused=false,pausedRemaining=0,deadline=0,ticker,dragStart=null,dragging=false,suppressClick=false;
+const ghost=document.createElement('div');ghost.className='ghost';ghost.hidden=true;document.body.append(ghost);
+function drawGrid(){
+ const previous=$('board').querySelector('.grid-lines');if(previous)previous.remove();
+ if(config().mode==='none')return;
+ const border=config().mode==='border';let path='';
+ for(let i=0;i<=GRID;i++){
+  if(border){path+=`M${i} 0V1 M${i} ${GRID-1}V${GRID} M0 ${i}H1 M${GRID-1} ${i}H${GRID} `;}
+  else path+=`M${i} 0V${GRID} M0 ${i}H${GRID} `;
+ }
+ if(border)path+=`M1 1H${GRID-1}V${GRID-1}H1Z M0 0H${GRID}V${GRID}H0Z`;
+ const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('class','grid-lines'+(border?' border-grid':''));svg.setAttribute('viewBox',`0 0 ${GRID} ${GRID}`);svg.setAttribute('aria-hidden','true');
+ svg.innerHTML=`<path d="${path}" fill="none" stroke="#758bac" stroke-width="1.25" vector-effect="non-scaling-stroke"/>`;$('board').prepend(svg);
+}
+function prepare(){randomSource=gameMode==='daily'?seededRandom(dailyDate+'-array-match-v1'):null;try{prepareBoard()}finally{randomSource=null}}
+function prepareBoard(){
+ rectangles=makeFreshLayout();const mode=config().mode;
+ $('board').style.setProperty('--grid',GRID);$('gridSize').textContent=GRID+' × '+GRID;$('board').setAttribute('aria-label',GRID+' by '+GRID+' grid');
+ $('level').textContent=(gameMode==='daily'?'Daily challenge · '+dailyDate:gameMode==='bonus'?'Bonus challenge · '+levelName():roundName())+' · '+rectangles.length+' rectangles';
+ $('board').classList.toggle('border-only',mode==='border');$('board').classList.toggle('no-grid',mode==='none');$('board').classList.toggle('overlap-board',mode==='overlap');$('board').classList.toggle('full-grid',mode==='full');
+ $('gridHint').textContent=mode==='overlap'?'Use the grid to judge each overlapping rectangle’s side lengths.':mode==='none'?'Compare the shapes and estimate their side lengths.':mode==='border'?'Every square around the outside is visible. Use these to count side lengths.':'Count the grid squares along each side.';
+ $('gridMode').textContent=mode==='overlap'?'GRID CLUES + OVERLAPS':mode==='none'?'NO GRID CLUES':mode==='border'?'BORDER CLUES ONLY':mode==='full'?'COUNT EVERY SQUARE':'COUNT THE SQUARES';
+ placements={};selected=null;cards=rectangles.flatMap(r=>[{id:'c'+r.id,type:'calc',value:r.area,text:r.w+' × '+r.h},{id:'a'+r.id,type:'area',value:r.area,text:String(r.area)}]);
+ $('shapes').innerHTML=rectangles.map(r=>`<div class="shape ${r.w===1&&r.h===1?'tiny':''}" role="button" tabindex="0" data-shape="${r.id}" aria-label="Rectangle ${String.fromCharCode(65+r.id)}: empty" style="--label-x:${(r.labelX||r.w/2)/r.w*100}%;--label-width:${Math.min(2,r.w)/r.w*100}%;--label-y:${(r.labelY||r.h/2)/r.h*100}%;--w:${r.w};--h:${r.h};background-color:${themeColours()[r.id]};left:${r.x/GRID*100}%;top:${r.y/GRID*100}%;width:${r.w/GRID*100}%;height:${r.h/GRID*100}%"></div>`).join('');
+ for(const [type,id]of [['calc','calculations'],['area','areas']])$(id).innerHTML=shuffle(cards.filter(c=>c.type===type)).map(c=>`<button class="card ${type==='area'?'area':''}" data-card="${c.id}" aria-pressed="false">${c.text}</button>`).join('');
+ drawGrid();$('time').textContent=String(roundSeconds());document.querySelector('.timer').classList.remove('urgent');$('feedback').textContent='Two cards belong in every rectangle.';render();updateStats();
+}
+function render(){const used=Object.values(placements).flatMap(p=>Object.values(p));for(const el of document.querySelectorAll('[data-card]')){el.disabled=!active||used.includes(el.dataset.card);el.classList.toggle('selected',el.dataset.card===selected);el.setAttribute('aria-pressed',String(el.dataset.card===selected))}for(const r of rectangles){const p=placements[r.id]||{},el=document.querySelector('[data-shape="'+r.id+'"]');el.innerHTML='<div class="answer-slot">'+['calc','area'].map(type=>{const c=cards.find(c=>c.id===p[type]);return c?`<button class="placed ${type}" data-symbol="${type==='calc'?'×':'='}" title="Return ${c.text}" data-return="${c.id}" data-owner="${r.id}" aria-label="Return ${c.text} to its row" ${active?'':'disabled'}>${c.text}</button>`:''}).join('')+'</div>';el.setAttribute('aria-label','Rectangle '+String.fromCharCode(65+r.id)+': '+(['calc','area'].map(t=>cards.find(c=>c.id===p[t])?.text||'missing '+(t==='calc'?'calculation':'area')).join(', ')));} $('progress').textContent=used.length+' / '+cards.length+' cards placed';$('submit').disabled=!active||used.length!==cards.length;$('clear').disabled=!active||!used.length;}
+function expired(){if(active&&performance.now()>=deadline){finish('timeout');return true}return !active}
+function select(id){if(expired())return;const used=Object.values(placements).some(p=>Object.values(p).includes(id));if(used)return;selected=id;render()}
+function drop(id){if(expired()||!selected)return;const c=cards.find(c=>c.id===selected);placements[id]??={};placements[id][c.type]=selected;selected=null;render();$('feedback').textContent=Object.values(placements).flatMap(Object.values).length===cards.length?'All cards placed. Submit when you’re ready.':'Keep matching. Answers are checked when you submit.';}
+function showModal(label,title,text,button){
+ updateSelector();$('practiceStage').value=String(levelIndex()*ROUNDS+1);
+ $('modal').classList.toggle('time-up',label==='TIME’S UP');$('modalLabel').textContent=label;$('modalTitle').textContent=title;$('modalText').textContent=text;
+ $('start').textContent=button||'';$('start').hidden=!button;$('closeModal').hidden=!paused;$('resumeProgress').hidden=paused;$('recordsList').hidden=true;$('reward').hidden=true;$('bonusRound').hidden=true;$('normalGame').hidden=gameMode==='normal';$('bestCelebration').hidden=true;$('difficultyAdvice').hidden=true;
+ $('modal').hidden=false;(paused?$('closeModal'):button?$('start'):$('tryStage')).focus();
+}
+function finish(reason){
+ if(!active)return;const now=performance.now();if(now>=deadline)reason='timeout';
+ const elapsed=Math.max(0,roundSeconds()*1000-(deadline-now));
+ active=false;paused=false;clearInterval(ticker);ghost.hidden=true;dragStart=null;dragging=false;selected=null;advance=false;
+ document.querySelectorAll('.target').forEach(el=>el.classList.remove('target'));render();
+ if(reason==='timeout'){resetStreak();bombSound();$('time').textContent='0';showModal('TIME’S UP','Try '+levelName().toLowerCase()+' again.','Your star tokens are safe. Start a fresh round and build a new streak.','Try again ↗');suggestDifficulty(false,elapsed);return;}
+ let correct=0;
+ for(const r of rectangles){const p=placements[r.id]||{},c=cards.find(c=>c.id===p.calc),a=cards.find(c=>c.id===p.area);const ok=!!c&&!!a&&c.value===r.area&&a.value===r.area;document.querySelector('[data-shape="'+r.id+'"]').classList.add(ok?'correct':'incorrect');if(ok)correct++;}
+ if(correct!==rectangles.length){resetStreak();endSound('wrong');showModal('KEEP PRACTISING',correct+' of '+rectangles.length+' rectangles correct.','Your tokens and fastest times are safe. Try a fresh board.','Try again ↗');suggestDifficulty(false,elapsed);return;}
+ const reward=awardWin(elapsed);advance=gameMode==='normal'&&level<MAX_ROUND;
+ showModal(roundName().toUpperCase()+' COMPLETE',level===MAX_ROUND?'Final level complete!':'Great matching!',level===MAX_ROUND?'Choose any level for another challenge.':level%ROUNDS===0?'Next: '+LEVELS[levelIndex()+1].label+'.':'Ready for the next shuffled round?',advance?(level%ROUNDS===0?'Next level ↗':'Next round ↗'):'Play again ↗');
+ $('reward').textContent=reward;$('reward').hidden=false;
+ if(gameMode!=='normal'){$('modalTitle').textContent=gameMode==='daily'?'Daily challenge complete!':'Bonus challenge complete!';$('modalText').textContent='Replay to improve your separate best time. The 3-gold reward is available once '+(gameMode==='daily'?'per day.':'per level.');$('start').textContent='Try for a faster time ↗';}
+ $('bonusRound').hidden=!(gameMode==='normal'&&level%ROUNDS===0);
+ celebrate(lastAward);suggestDifficulty(true,elapsed);
+}
+let audioContext=null,lastTick=-1,soundOn=stats.sound;
+function unlockSound(){try{if(!audioContext)audioContext=new (window.AudioContext||window.webkitAudioContext)();audioContext.resume().catch(()=>{})}catch{}}
+function tone(frequency,duration,volume){if(!soundOn||!audioContext||audioContext.state!=='running')return;try{const osc=audioContext.createOscillator(),gain=audioContext.createGain(),t=audioContext.currentTime;osc.type='triangle';osc.frequency.setValueAtTime(frequency,t);gain.gain.setValueAtTime(volume,t);gain.gain.exponentialRampToValueAtTime(.001,t+duration);osc.connect(gain);gain.connect(audioContext.destination);osc.start(t);osc.stop(t+duration)}catch{}}
+// Synthesised, gently enveloped sounds: a low descending doom for time-out,
+// and a short two-note descending cue for incorrect answers.
+function endSound(kind){
+ if(!soundOn||!audioContext||audioContext.state!=='running')return;
+ try{
+  const ctx=audioContext,base=ctx.currentTime;
+  const notes=kind==='timeout'?[[0,150,42,1.05,.22,'sine'],[0,225,63,.85,.08,'triangle'],[.08,75,35,1.15,.14,'sine']]:[[0,330,277,.22,.12,'triangle'],[.24,247,185,.42,.13,'triangle']];
+  for(const [delay,from,to,duration,volume,type]of notes){
+   const osc=ctx.createOscillator(),gain=ctx.createGain(),t=base+delay;osc.type=type;
+   osc.frequency.setValueAtTime(from,t);osc.frequency.exponentialRampToValueAtTime(to,t+duration);
+   gain.gain.setValueAtTime(.001,t);gain.gain.linearRampToValueAtTime(volume,t+.025);gain.gain.exponentialRampToValueAtTime(.001,t+duration);
+   osc.connect(gain);gain.connect(ctx.destination);osc.onended=()=>{osc.disconnect();gain.disconnect()};osc.start(t);osc.stop(t+duration+.03);
+  }
+ }catch{}
+}
+function bombSound(){endSound('timeout')}
+function updateClock(){if(expired())return;const seconds=Math.ceil((deadline-performance.now())/1000);$('time').textContent=seconds;document.querySelector('.timer').classList.toggle('urgent',seconds<=10);if(seconds<=10&&seconds!==lastTick){lastTick=seconds;tone(seconds%2?880:660,.07,.07)}}
+let performanceRun={group:null,poor:0,fast:0},suggestedLevel=null;
+function correctCardFraction(){
+ let correct=0;
+ for(const r of rectangles)for(const type of ['calc','area']){
+  const id=placements[r.id]?.[type],card=cards.find(c=>c.id===id);
+  if(card&&card.type===type&&card.value===r.area)correct++;
+ }
+ return correct/Math.max(1,cards.length);
+}
+function suggestDifficulty(won,elapsed){
+ if(gameMode!=='normal')return;
+ const group=levelIndex();if(performanceRun.group!==group)performanceRun={group,poor:0,fast:0};
+ performanceRun.poor=!won&&correctCardFraction()<.5?performanceRun.poor+1:0;
+ performanceRun.fast=won&&elapsed<20000?performanceRun.fast+1:0;
+ let message='';suggestedLevel=null;
+ if(performanceRun.poor>=5&&group>0){suggestedLevel=(group-1)*ROUNDS+1;message='This level is proving tricky. Try Level '+group+' to build confidence, then come back when you’re ready. Your stars stay with you.';}
+ else if(performanceRun.fast>=3&&group<LEVELS.length-1){suggestedLevel=(group+1)*ROUNDS+1;message='Three speedy wins in a row—each under 20 seconds! Ready to try Level '+(group+2)+' for a bigger challenge?';}
+ if(suggestedLevel!==null){$('difficultyAdvice').hidden=false;$('adviceText').textContent=message;$('trySuggested').textContent='Try '+levelName(suggestedLevel)+' ↗';}
+}
+$('trySuggested').addEventListener('click',()=>{if(suggestedLevel===null)return;level=suggestedLevel;gameMode='normal';advance=false;performanceRun={group:levelIndex(),poor:0,fast:0};start()});
+
+function start(){
+ if(gameMode!=='normal'||performanceRun.group!==levelIndex())performanceRun={group:gameMode==='normal'?levelIndex():null,poor:0,fast:0};
+ unlockSound();lastTick=-1;if(advance){level=Math.min(level+1,MAX_ROUND);advance=false}
+ clearInterval(ticker);paused=false;active=false;prepare();active=true;deadline=performance.now()+roundSeconds()*1000;
+ if(gameMode==='normal')stats.progress=level;saveStats();$('modal').hidden=true;render();ticker=setInterval(updateClock,80);
+}
+function pauseRound(){
+ if(!active)return false;if(expired())return false;
+ pausedRemaining=deadline-performance.now();paused=true;active=false;clearInterval(ticker);ghost.hidden=true;dragStart=null;dragging=false;selected=null;
+ document.querySelectorAll('.target').forEach(el=>el.classList.remove('target'));render();return true;
+}
+function resumeRound(){if(!paused)return;paused=false;active=true;deadline=performance.now()+pausedRemaining;$('modal').hidden=true;render();updateClock();ticker=setInterval(updateClock,80);$('practiceMenu').focus();}
+function choosePractice(){const wasActive=active;if(wasActive&&!pauseRound())return;showModal('LEVEL SELECTOR','Choose a level',paused?'Your round is paused. Close this window to resume the same board. Switching levels starts a new round and resets your streak; your star tokens stay safe.':'All 18 levels are open, with ten shuffled rounds per level.',paused?null:advance?'Continue ↗':'Start round ↗');$('bonusRound').hidden=paused||gameMode!=='normal'||!stats.unlockedBonus[levelIndex()+1];}
+$('closeModal').addEventListener('click',resumeRound);
+$('sound').addEventListener('click',()=>{soundOn=!soundOn;stats.sound=soundOn;saveStats();updateStats();if(soundOn)unlockSound()});
+$('restart').addEventListener('click',()=>{if(active||paused)resetStreak();advance=false;start()});
+$('start').addEventListener('click',start);
+$('submit').addEventListener('click',()=>{if(!expired()&&Object.values(placements).flatMap(Object.values).length===cards.length)finish('submit')});
+$('clear').addEventListener('click',()=>{if(expired())return;placements={};selected=null;render();$('feedback').textContent='Cards cleared. The timer is still running.'});
+$('practiceMenu').addEventListener('click',choosePractice);
+$('tryStage').addEventListener('click',()=>{const target=Number($('practiceStage').value);if(!Number.isInteger(target)||target<1||target>MAX_ROUND||(target-1)%ROUNDS)return;if(active||paused)resetStreak();gameMode='normal';level=target;advance=false;start()});
+$('resumeProgress').addEventListener('click',()=>{gameMode='normal';level=stats.progress;advance=false;start()});
+$('records').addEventListener('click',()=>{const wasActive=active;if(wasActive&&!pauseRound())return;showModal('PERSONAL BESTS','Fastest times','Your fastest successful round at each level. Paused time is excluded.',paused?null:advance?'Continue ↗':'Start round ↗');$('recordsList').hidden=false;$('recordsList').innerHTML=LEVELS.map((c,i)=>'<div class="best-row"><span>Level '+(i+1)+' · '+c.count+' rectangles</span><strong>'+(Number.isFinite(stats.best[i+1])?formatTime(stats.best[i+1]):'—')+'</strong></div>').join('');});
+document.addEventListener('click',e=>{if(suppressClick){suppressClick=false;return}const placed=e.target.closest('[data-return]');if(placed){if(expired())return;const p=placements[placed.dataset.owner],c=cards.find(c=>c.id===placed.dataset.return);delete p[c.type];selected=null;render();$('feedback').textContent=c.text+' returned to its row. Choose it to try another rectangle.';return}const card=e.target.closest('[data-card]'),shape=e.target.closest('[data-shape]');if(card)select(card.dataset.card);if(shape)drop(Number(shape.dataset.shape))});
+document.addEventListener('pointerdown',e=>{const card=e.target.closest('[data-card]');if(!card||card.disabled||expired())return;select(card.dataset.card);dragStart={x:e.clientX,y:e.clientY};dragging=false;card.setPointerCapture(e.pointerId);ghost.textContent=card.textContent});
+document.addEventListener('pointermove',e=>{if(!dragStart||!active)return;if(Math.hypot(e.clientX-dragStart.x,e.clientY-dragStart.y)>5)dragging=true;if(!dragging)return;ghost.hidden=false;ghost.style.left=e.clientX+'px';ghost.style.top=e.clientY+'px';const target=document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-shape]');document.querySelectorAll('[data-shape]').forEach(el=>el.classList.toggle('target',el===target))});
+document.addEventListener('pointerup',e=>{if(!dragStart)return;const wasDragging=dragging;ghost.hidden=true;dragStart=null;dragging=false;document.querySelectorAll('.target').forEach(el=>el.classList.remove('target'));if(wasDragging){const shape=document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-shape]');if(shape)drop(Number(shape.dataset.shape));suppressClick=true;setTimeout(()=>suppressClick=false,0)}});
+document.addEventListener('pointercancel',()=>{ghost.hidden=true;dragStart=null;dragging=false;document.querySelectorAll('.target').forEach(el=>el.classList.remove('target'))});document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('[data-shape]')){e.preventDefault();drop(Number(e.target.dataset.shape))}if(e.key==='Escape'){if(paused)resumeRound();else{selected=null;render()}}});
+
+const THEMES={classic:{name:'Classic blue',price:0,colours},forest:{name:'Forest',price:3,colours:['#246953','#875791','#256e89','#a86525','#664698','#9a394e','#546a27','#476492']},sunset:{name:'Sunset',price:5,colours:['#ba4d26','#9b3365','#286e91','#a96912','#7044a0','#217764','#993949','#54652d']},cosmos:{name:'Cosmos',price:8,colours:['#5940a3','#246a96','#a13274','#207c76','#a2611b','#425cb0','#9d3b4b','#637329']}};
+const PATTERNS={plain:{name:'Plain',price:0},dots:{name:'Polka dots',price:2},stripes:{name:'Diagonal stripes',price:3}};
+function themeColours(){return (THEMES[stats.theme]||THEMES.classic).colours}
+function applyLook(){document.body.dataset.theme=stats.theme;document.body.dataset.pattern=stats.pattern;document.querySelectorAll('[data-shape]').forEach(el=>el.style.backgroundColor=themeColours()[Number(el.dataset.shape)]);}
+function seededRandom(text){let n=2166136261;for(const c of text)n=Math.imul(n^c.charCodeAt(0),16777619);return()=>{n+=0x6D2B79F5;let t=n;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return ((t^t>>>14)>>>0)/4294967296}}
+function todayKey(){return new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())}
+function dailyLevel(date){return (Math.floor(seededRandom(date+'-difficulty')()*9))*ROUNDS+1}
+function celebrate(award){
+ if(award.newBest){$('bestCelebration').hidden=false;$('bestCelebration').textContent=award.improvement===null?'★ First personal best!':'★ New personal best! '+formatTime(award.improvement)+' faster!';}
+ const melody=award.streakBonus?[523,659,784,1047,1319]:award.newBest?[659,880,1175]:[659,880];melody.forEach((f,i)=>setTimeout(()=>tone(f,.15,.07),i*130));
+ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ const destination=$('tokens').getBoundingClientRect();
+ for(let i=0;i<Math.min(award.silver+(award.streakBonus?10:0),16);i++){
+  const star=document.createElement('span');star.className='flying-star'+(award.streakBonus||gameMode!=='normal'?' gold-star':'');star.textContent='★';star.setAttribute('aria-hidden','true');
+  star.style.setProperty('--sx',(window.innerWidth/2+(i-3)*15)+'px');star.style.setProperty('--sy',(window.innerHeight/2)+'px');star.style.setProperty('--tx',(destination.left+destination.width/2)+'px');star.style.setProperty('--ty',destination.top+'px');star.style.animationDelay=(i*60)+'ms';document.body.append(star);setTimeout(()=>star.remove(),2100);
+ }
+ if(award.streakBonus||award.newBest)for(let i=0;i<(award.streakBonus?35:16);i++){const bit=document.createElement('span');bit.className='confetti';bit.style.left=(20+Math.random()*60)+'vw';bit.style.top='25vh';bit.style.backgroundColor=['#e6ae22','#2958da','#d7649c','#30b59d'][i%4];bit.style.animationDelay=(Math.random()*350)+'ms';bit.setAttribute('aria-hidden','true');document.body.append(bit);setTimeout(()=>bit.remove(),1800);}
+}
+function openExtra(title,text){if(active&&!pauseRound())return false;$('extraTitle').textContent=title;$('extraText').textContent=text;$('extraMessage').textContent='';$('extras').hidden=false;$('closeExtras').focus();return true;}
+function closeExtra(){ $('extras').hidden=true;if(paused)resumeRound(); }
+function shopMarkup(){const balance=Math.floor(stats.tokens/2);$('extraContent').innerHTML='<p id="shopBalance">Your balance: '+balance+' gold + '+stats.tokens%2+' silver</p><div class="shop-list">'+[['theme',THEMES],['pattern',PATTERNS]].flatMap(([type,items])=>Object.entries(items).map(([id,item])=>{const owned=item.price===0||stats.owned.includes(type+':'+id),equipped=stats[type]===id;return '<div class="shop-item"><strong>'+item.name+'</strong><div class="swatch" style="background:'+(item.colours?'linear-gradient(90deg,'+item.colours.slice(0,4).join(',')+')':id==='dots'?'radial-gradient(#fff 2px,#536b9b 2px) 0 0/9px 9px':id==='stripes'?'repeating-linear-gradient(45deg,#536b9b 0 8px,#819ac1 8px 11px)':'#536b9b')+'"></div><button data-buy="'+type+':'+id+'" '+(equipped||(!owned&&stats.tokens<item.price*2)?'disabled':'')+'>'+(equipped?'Selected':owned?'Use this':item.price+' gold · Buy & use')+'</button></div>'})).join('')+'</div>';}
+function buyCosmetic(type,id){const item=(type==='theme'?THEMES:type==='pattern'?PATTERNS:{})[id];if(!item)return false;const key=type+':'+id;if(item.price&&!stats.owned.includes(key)){if(stats.tokens<item.price*2)return false;stats.tokens-=item.price*2;stats.owned.push(key);}stats[type]=id;saveStats();updateStats();applyLook();return true;}
+$('shop').addEventListener('click',()=>{if(openExtra('Star shop','Spend earned gold on colours and patterns. Each purchase stays yours. These change the look, never the maths.'))shopMarkup()});
+$('extraContent').addEventListener('click',e=>{const button=e.target.closest('[data-buy]');if(!button)return;const [type,id]=button.dataset.buy.split(':');if(buyCosmetic(type,id)){shopMarkup();$('extraMessage').textContent='Selected! Your look is saved.';}});
+$('closeExtras').addEventListener('click',closeExtra);
+$('daily').addEventListener('click',()=>{const date=todayKey();if(!openExtra('Daily challenge','One shared puzzle for '+date+' (UK date). Same rectangles and cards for everyone using this version. Win 3 gold once today; replay to improve your time.'))return;const best=stats.dailyBest[date];$('extraContent').innerHTML='<p>Today’s best: '+(Number.isFinite(best)?formatTime(best):'Not set yet')+'</p><p>'+(stats.dailyPaid[date]?'Today’s gold is collected. Your best time is still there to beat!':'3 gold stars waiting to be won.')+'</p><button id="playDaily" class="primary">Play today’s puzzle ↗</button>';$('playDaily').addEventListener('click',()=>{if(active||paused)resetStreak();$('extras').hidden=true;dailyDate=date;gameMode='daily';level=dailyLevel(date);advance=false;start()});});
+$('bonusRound').addEventListener('click',()=>{if(!stats.unlockedBonus[levelIndex()+1])return;gameMode='bonus';advance=false;start();$('feedback').textContent='Bonus round: 45 seconds at the next difficulty. Win 3 gold once for this level.';});
+$('normalGame').addEventListener('click',()=>{gameMode='normal';level=stats.progress;advance=false;start()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('extras').hidden)closeExtra()});
+applyLook();
+
+prepare();updateSelector();if(level>1)showModal('WELCOME BACK','Continue '+roundName().toLowerCase()+'.','Your star tokens and fastest times are saved. Choose any level or continue your saved game.','Continue ↗');
+</script></body></html>
