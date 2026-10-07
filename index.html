@@ -103,52 +103,32 @@ function awardWin(elapsed){
 function resetStreak(){stats.streak=0;saveStats();updateStats()}
 const shuffle=arr=>{arr=[...arr];for(let i=arr.length-1;i>0;i--){let j=Math.floor(random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]}return arr};
 function makeCandidate(){
- const legacy=legacyLevel();
- const stage=Math.max(1,legacy-(legacy>=21?6:5));
- GRID=stage>=25?15:12;
- const count=rectangleCount();
- if(levelIndex()===4)return [[1,1,3,3],[5,1,3,3],[9,1,2,3],[1,7,3,3],[6,7,3,3]].map(([x,y,w,h],id)=>({id,x,y,w,h,area:w*h}));const repeated=stage>=8&&stage%3===2;
- const sets=stage<=5?[[2,3],[3,3],[3,4],[4,4]]:stage<=10?[[3,3],[2,5],[3,4],[3,5]]:stage<15?[[3,3],[2,5],[3,4],[3,5]]:[[3,4],[3,5],[4,4],[2,5]];
- let dims=shuffle(sets).slice(0,count);
- if(stage>=15)dims=shuffle([[3,4],[3,5],[4,4],[3,5]]).slice(0,count);
- if(stage>=15&&!repeated)dims=[[3,4],[3,5],[4,4],[2,5]];
- if(repeated&&stage<25){
-  let layout=[[1,1,2,6],[4,1,4,3],[4,5,2,5],[7,6,4,4]].slice(0,count);
-  const turns=Math.floor(random()*4);
-  for(let i=0;i<turns;i++)layout=layout.map(([x,y,w,h])=>[GRID-y-h,x,h,w]);
-  if(random()<.5)layout=layout.map(([x,y,w,h])=>[GRID-x-w,y,w,h]);
-  return layout.map(([x,y,w,h],id)=>({id,x,y,w,h,area:w*h}));
+ const count=rectangleCount();GRID=count>=5?15:12;
+ const pool=[];for(let w=2;w<=6;w++)for(let h=2;h<=6;h++)pool.push([w,h]);
+ for(let trial=0;trial<250;trial++){
+  const dims=shuffle(pool).slice(0,count).sort((a,b)=>b[0]*b[1]-a[0]*a[1]);const rs=[];
+  for(const [w,h] of dims){
+   const positions=[];for(let y=1;y<=GRID-h-1;y++)for(let x=1;x<=GRID-w-1;x++){
+    if(rs.every(r=>x+w<r.x||r.x+r.w<x||y+h<r.y||r.y+r.h<y))positions.push({x,y});
+   }
+   if(!positions.length)break;
+   const p=positions[Math.floor(random()*positions.length)];rs.push({...p,w,h,area:w*h,id:rs.length});
+  }
+  if(rs.length===count)return shuffle(rs).map((r,id)=>({...r,id}));
  }
- const seen=new Set();
- const orient=(w,h,maxWidth)=>{if(h<=maxWidth&&random()<.5)[w,h]=[h,w];if(seen.has(w+'x'+h))[w,h]=[h,w];if(w>maxWidth||seen.has(w+'x'+h))throw Error('Duplicate rectangle orientation');seen.add(w+'x'+h);return [w,h]};
- if(stage>=25){
-  const tiny=legacy%4===0?[1,1]:[2,2];
-  const layouts=[
-   [[1,1,9,9],[11,1,3,3],[11,5,2,4],[1,11,4,3],[6,11,4,2],[12,11,...tiny]],
-   [[1,1,7,6],[9,1,5,4],[9,6,4,3],[1,8,3,6],[5,10,4,4],[12,11,...tiny]],
-   [[1,1,8,7],[10,1,4,4],[10,6,3,3],[1,9,4,5],[6,10,4,3],[12,11,...tiny]]
-  ];
-  layouts.push([[1,1,8,8],[10,1,4,4],[10,6,3,2],[10,9,1,1],[1,10,3,4],[5,10,4,3],[10,11,2,3]]);
-  let chosen=count===7?layouts[3]:layouts[Math.floor(random()*layouts.length)];
-  // Keep one large shape, with a varying selection of smaller shapes around it.
-  chosen=[chosen[0],...shuffle(chosen.slice(1)).slice(0,count-1)];
-  const turns=Math.floor(random()*4);
-  for(let i=0;i<turns;i++)chosen=chosen.map(([x,y,w,h])=>[GRID-y-h,x,h,w]);
-  if(random()<.5)chosen=chosen.map(([x,y,w,h])=>[GRID-x-w,y,w,h]);
-  return shuffle(chosen).map(([x,y,w,h],id)=>({id,x,y,w,h,area:w*h}));
- }
-
- // Each shape fits in a five-square quadrant, keeping the outer counting border clear.
- const slots=shuffle([[1,1],[6,1],[1,6],[6,6]]);
- return dims.map(([w,h],id)=>{[w,h]=orient(w,h,5);const [sx,sy]=slots[id];return {id,x:sx+Math.floor(random()*(6-w)),y:sy+Math.floor(random()*(6-h)),w,h,area:w*h}});
+ // A spacious fallback also chooses fresh sizes, never a fixed shape set.
+ const cols=count>=5?3:2,span=count>=5?4:5,max=count>=5?3:4;
+ return shuffle(Array.from({length:cols*cols},(_,i)=>({x:1+(i%cols)*span,y:1+Math.floor(i/cols)*span}))).slice(0,count).map((p,id)=>{
+  const w=2+Math.floor(random()*(max-1)),h=2+Math.floor(random()*(max-1));return {...p,id,w,h,area:w*h};
+ });
 }
 function overlapLayout(){
  GRID=15;
  const count=rectangleCount();
- const pool=rectangleCount()<=7?[[9,9],[7,7],[7,5],[5,7],[6,4],[4,6],[3,5],[5,3],[2,4],[1,1]]:rectangleCount()===8?[[8,8],[7,6],[6,7],[6,6],[7,5],[5,7],[5,5],[4,6],[6,4],[3,4]]:[[6,6],[6,5],[5,6],[5,5],[7,4],[4,7],[6,4],[4,6],[5,4],[4,5]];
+ const pool=rectangleCount()<=7?[[9,9],[7,7],[7,5],[5,7],[6,4],[4,6],[3,5],[5,3],[2,4],[2,3]]:rectangleCount()===8?[[8,8],[7,6],[6,7],[6,6],[7,5],[5,7],[5,5],[4,6],[6,4],[3,4]]:[[6,6],[6,5],[5,6],[5,5],[7,4],[4,7],[6,4],[4,6],[5,4],[4,5]];
  const hits=(a,b)=>a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y;
  for(let trial=0;trial<120;trial++){
-  const dims=[...pool.slice(0,3),...shuffle(pool.slice(3)).slice(0,count-3)].sort((a,b)=>b[0]*b[1]-a[0]*a[1]);
+  const dims=shuffle([...pool,[3,3],[4,4],[4,5],[5,4],[3,6],[6,3]]).slice(0,count).sort((a,b)=>b[0]*b[1]-a[0]*a[1]);
   const rs=[];let failed=false;
   for(const [w,h] of dims){
    const positions=[];for(let y=0;y<=GRID-h;y++)for(let x=0;x<=GRID-w;x++)positions.push({x,y,w,h});
@@ -166,8 +146,9 @@ function overlapLayout(){
  throw Error('Unable to reserve clear answer spaces');
 }
 function makeLayout(){if(config().mode.startsWith('overlap'))return overlapLayout();for(let attempt=0;attempt<200;attempt++){const rs=makeCandidate();if(rs.every((a,i)=>rs.every((b,j)=>i===j||a.x+a.w<b.x||b.x+b.w<a.x||a.y+a.h<b.y||b.y+b.h<a.y)))return rs}throw Error('Unable to space rectangles')}
-// Keep the last ten layouts per difficulty so replays do not reuse a recent board.
-const recentLayouts=new Map();
+// Remember the last ten size combinations per difficulty, including across reloads.
+const RECENT_LAYOUTS_KEY='array-match-recent-sizes-v1';
+const recentLayouts=new Map();try{const saved=JSON.parse(localStorage.getItem(RECENT_LAYOUTS_KEY)||'[]');if(Array.isArray(saved))for(const [key,values]of saved)if(Array.isArray(values))recentLayouts.set(key,values.filter(v=>typeof v==='string').slice(-10));}catch{}
 function makeFreshLayout(){
  const group=levelIndex(), recent=gameMode==='daily'?[]:recentLayouts.get(group)||[];
  let result,signature;
@@ -181,10 +162,11 @@ function makeFreshLayout(){
    }
    if(positions.length)Object.assign(r,positions[Math.floor(random()*positions.length)]);
   }
-  signature=result.map(r=>[r.x,r.y,r.w,r.h].join(',')).sort().join(';');
+  signature=result.map(r=>[Math.min(r.w,r.h),Math.max(r.w,r.h)].join('×')).sort().join(';');
+  if(result.some(r=>r.area===1))continue;
   if(!recent.includes(signature))break;
  }
- if(gameMode!=='daily')recentLayouts.set(group,[...recent,signature].slice(-10));
+ if(gameMode!=='daily'){recentLayouts.set(group,[...recent,signature].slice(-10));try{localStorage.setItem(RECENT_LAYOUTS_KEY,JSON.stringify([...recentLayouts]));}catch{}}
  return result;
 }
 let rectangles=[],cards=[],placements={},selected=null,active=false,paused=false,pausedRemaining=0,deadline=0,ticker,dragStart=null,dragging=false,suppressClick=false;
