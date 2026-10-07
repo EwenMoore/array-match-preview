@@ -102,11 +102,16 @@ function awardWin(elapsed){
 }
 function resetStreak(){stats.streak=0;saveStats();updateStats()}
 const shuffle=arr=>{arr=[...arr];for(let i=arr.length-1;i>0;i--){let j=Math.floor(random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]}return arr};
+function chooseUniqueSizes(pool,count){
+ const seen=new Set(),sizes=[];for(const [w,h]of pool){const key=[Math.min(w,h),Math.max(w,h)].join('x');if(w*h>1&&!seen.has(key)){seen.add(key);sizes.push([w,h]);}}
+ if(sizes.length<count)throw Error('Not enough distinct rectangle sizes');
+ return shuffle(sizes).slice(0,count).map(([w,h])=>random()<.5?[h,w]:[w,h]).sort((a,b)=>b[0]*b[1]-a[0]*a[1]);
+}
 function makeCandidate(){
  const count=rectangleCount();GRID=count>=5?15:12;
  const pool=[];for(let w=2;w<=6;w++)for(let h=2;h<=6;h++)pool.push([w,h]);
  for(let trial=0;trial<250;trial++){
-  const dims=shuffle(pool).slice(0,count).sort((a,b)=>b[0]*b[1]-a[0]*a[1]);const rs=[];
+  const dims=chooseUniqueSizes(pool,count);const rs=[];
   for(const [w,h] of dims){
    const positions=[];for(let y=1;y<=GRID-h-1;y++)for(let x=1;x<=GRID-w-1;x++){
     if(rs.every(r=>x+w<r.x||r.x+r.w<x||y+h<r.y||r.y+r.h<y))positions.push({x,y});
@@ -116,11 +121,11 @@ function makeCandidate(){
   }
   if(rs.length===count)return shuffle(rs).map((r,id)=>({...r,id}));
  }
- // A spacious fallback also chooses fresh sizes, never a fixed shape set.
- const cols=count>=5?3:2,span=count>=5?4:5,max=count>=5?3:4;
- return shuffle(Array.from({length:cols*cols},(_,i)=>({x:1+(i%cols)*span,y:1+Math.floor(i/cols)*span}))).slice(0,count).map((p,id)=>{
-  const w=2+Math.floor(random()*(max-1)),h=2+Math.floor(random()*(max-1));return {...p,id,w,h,area:w*h};
- });
+ // Spacious slots preserve distinct sizes even if random packing needs more room.
+ const cols=count>=5?3:2;GRID=cols*6+1;
+ const smallPool=[];for(let w=2;w<=5;w++)for(let h=w;h<=5;h++)smallPool.push([w,h]);
+ const dims=chooseUniqueSizes(smallPool,count),slots=shuffle(Array.from({length:cols*cols},(_,i)=>({x:1+(i%cols)*6,y:1+Math.floor(i/cols)*6})));
+ return dims.map(([w,h],id)=>({...slots[id],id,w,h,area:w*h}));
 }
 function overlapLayout(){
  GRID=15;
@@ -128,7 +133,7 @@ function overlapLayout(){
  const pool=rectangleCount()<=7?[[9,9],[7,7],[7,5],[5,7],[6,4],[4,6],[3,5],[5,3],[2,4],[2,3]]:rectangleCount()===8?[[8,8],[7,6],[6,7],[6,6],[7,5],[5,7],[5,5],[4,6],[6,4],[3,4]]:[[6,6],[6,5],[5,6],[5,5],[7,4],[4,7],[6,4],[4,6],[5,4],[4,5]];
  const hits=(a,b)=>a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y;
  for(let trial=0;trial<120;trial++){
-  const dims=shuffle([...pool,[3,3],[4,4],[4,5],[5,4],[3,6],[6,3]]).slice(0,count).sort((a,b)=>b[0]*b[1]-a[0]*a[1]);
+  const dims=chooseUniqueSizes([...pool,[3,3],[4,4],[4,5],[3,6],[2,4],[2,5],[3,4],[3,5],[2,6]],count);
   const rs=[];let failed=false;
   for(const [w,h] of dims){
    const positions=[];for(let y=0;y<=GRID-h;y++)for(let x=0;x<=GRID-w;x++)positions.push({x,y,w,h});
